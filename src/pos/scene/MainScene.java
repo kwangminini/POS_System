@@ -18,7 +18,7 @@ public class MainScene {
 	}
 	public boolean goMainMenu() {
 		System.out.println("1. 주문\n"+"2. 테이블\n"+"3. 계산\n"+"4. 메뉴관리\n"+"5. 종료");
-		String input=scan.nextLine();
+		String input=this.scan.nextLine();
 		if(StringChecker.checkOneFour(input)) {
 		switch(Integer.parseInt(input)) {
 		case 1:
@@ -46,7 +46,7 @@ public class MainScene {
 	}
 	public boolean goMenu1() {
 		System.out.println("1~6 사이의 테이블 번호를 입력하세요.");
-		tablenum=scan.nextLine();
+		tablenum=this.scan.nextLine();
 		if(StringChecker.checkTableNum(tablenum)) {
 			//unit_test System.out.println("menu1");
 			filemanager.readFile(filePath);
@@ -77,9 +77,9 @@ public class MainScene {
 				return goOrder(order_tablenum);
 			}
 		}
-		tableManager.add(menu_array[0],Integer.parseInt(menu_array[1]));
+		tableManager.add(menu_array[0],Integer.parseInt(menu_array[1]),tablenum);
 		System.out.println("주문이 완료되었습니다.");
-		tableManager.print();
+		tableManager.print(tablenum);
 		return goMainMenu();
 		//unit_test System.out.println(StringChecker.checkMenu(menu));
 		//return true;

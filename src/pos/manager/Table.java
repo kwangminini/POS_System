@@ -9,9 +9,9 @@ public class Table {
 	private HashMap<String, Integer> map=new HashMap<String,Integer>();
 	//ArrayList<HashMap<String, Integer>> orderedMenu=new ArrayList<HashMap<String,Integer>>();
 	
-	public void addTable(String orde,int num) {
-		//ordermenu=orde;
-		map.put(orde, num);
+	public void addTable(String ordermenu,int num) {
+		
+		map.put(ordermenu, map.containsKey(ordermenu)?map.get(ordermenu)+num:num);				
 		orderedMenu.add(map);
 		}
 	public ArrayList<HashMap<String, Integer>> getOrdedmenu() {
