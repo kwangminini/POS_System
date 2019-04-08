@@ -4,13 +4,14 @@ import java.util.Scanner;
 
 import pos.manager.FileManager;
 import pos.manager.StringChecker;
+import pos.manager.Table;
 import pos.manager.TableManager;
 
 public class MainScene {
 	String tablenum="";
 	String filePath="C:\\Users\\rhkd8\\eclipse-workspace\\POS\\src\\menulist.txt";
 	FileManager filemanager=new FileManager();
-	TableManager tablemanager=new TableManager();
+	TableManager tableManager=new TableManager();
 	Scanner scan=new Scanner(System.in);
 	public void doProcess() {
 		while(this.goMainMenu()) {};
@@ -61,6 +62,9 @@ public class MainScene {
 		int order_tablenum=tablenum;
 		System.out.println("주문하실 메뉴와 수량을 입력하세요.");
 		menu=this.scan.nextLine();
+		if(StringChecker.checkExit(menu)) {
+			return goMainMenu();
+		}
 		String[] menu_array=menu.split(" ");
 		for(int i=0;i<menu_array.length;i=i+2) {
 		if(!StringChecker.checkMenu(menu_array[i])) {
@@ -73,7 +77,9 @@ public class MainScene {
 				return goOrder(order_tablenum);
 			}
 		}
+		tableManager.add(menu_array[0],Integer.parseInt(menu_array[1]));
 		System.out.println("주문이 완료되었습니다.");
+		tableManager.print();
 		return goMainMenu();
 		//unit_test System.out.println(StringChecker.checkMenu(menu));
 		//return true;

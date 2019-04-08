@@ -19,8 +19,16 @@ public class StringChecker {
 	      return true;
 	   }
 	public static boolean checkTableNum(String tablenum) {//1~5 check
-	      if(!tablenum.matches("^[1-6]{1}$")&&!tablenum.matches("exit")) {
+	      if(!tablenum.matches("^[1-6]{1}$")&&!tablenum.matches("/exit/")) {
 	         
+	         return false;
+	      }
+	      
+	      return true;
+	   }
+	public static boolean checkExit(String exit) {//exit check
+	      if(!exit.matches("exit")) {
+	       
 	         return false;
 	      }
 	      
