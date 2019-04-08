@@ -8,7 +8,7 @@ import pos.manager.Table;
 import pos.manager.TableManager;
 
 public class MainScene {
-	String tablenum="";
+	String tableNum="";
 	String filePath="C:\\Users\\rhkd8\\eclipse-workspace\\POS\\src\\menulist.txt";
 	FileManager filemanager=new FileManager();
 	TableManager tableManager=new TableManager();
@@ -46,11 +46,14 @@ public class MainScene {
 	}
 	public boolean goMenu1() {
 		System.out.println("1~6 사이의 테이블 번호를 입력하세요.");
-		tablenum=this.scan.nextLine();
-		if(StringChecker.checkTableNum(tablenum)) {
+		tableNum=this.scan.nextLine();
+		if(StringChecker.checkExit(tableNum)) {
+			return goMainMenu();
+		}
+		if(StringChecker.checkTableNum(tableNum)) {
 			//unit_test System.out.println("menu1");
 			filemanager.readFile(filePath);
-			return goOrder(Integer.parseInt(tablenum));
+			return goOrder(Integer.parseInt(tableNum));
 		}else {
 			System.out.println("없는 테이블입니다. 1 - 6 내의 테이블 번호를 입력해 주세요.");
 			return goMenu1();
@@ -77,7 +80,9 @@ public class MainScene {
 				return goOrder(order_tablenum);
 			}
 		}
-		tableManager.add(menu_array[0],Integer.parseInt(menu_array[1]),tablenum);
+		for(int i=0;i<menu_array.length;i=i+2) {
+		tableManager.add(menu_array[i],Integer.parseInt(menu_array[i+1]),tablenum);
+		}
 		System.out.println("주문이 완료되었습니다.");
 		tableManager.print(tablenum);
 		return goMainMenu();
