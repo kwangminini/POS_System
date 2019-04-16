@@ -1,6 +1,8 @@
 package pos.scene;
 
 import java.awt.CheckboxMenuItem;
+import java.io.File;
+import java.io.FileWriter;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Scanner;
@@ -185,11 +187,22 @@ public class MainScene {
 				System.out.println("사용중인 테이블입니다. 다른 테이블 번호를 입력해주세요.");
 				moveTable();
 			}
-		}else {
+		}else {	
 			System.out.println("없는 테이블입니다. 1-6 내의 테이블 번호를 입력해 주세요.");
 			moveTable();
 		}
 		
+	}
+	private void addMenu(String mname,String price) { //메뉴판에 메뉴 추가
+		File file=new File(filePath);
+		try {
+			FileWriter fw=new FileWriter(file, true);
+			fw.write(mname+" "+price+"\n");
+			fw.close();
+			goMain();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 	String mname="";
 		private void selMode(int modeNum) {
@@ -211,8 +224,19 @@ public class MainScene {
 			price=mnameArray[mnameArray.length-1];
 			//unit_test System.out.println(mname);
 			//unit_test System.out.println(price);
+			if(StringChecker.checkMenu(mname)) { //추가할 메뉴가 이미 존재하는지 체크
+				System.out.println("이미 존재하는 메뉴입니다.");
+				selMode(modeNum);
+			}
 			if(StringChecker.checkMname(mname)) {
-				System.out.println("true");
+				//unit_test System.out.println("price:"+price+" "+"price size:"+" "+price.length());
+				if(StringChecker.checkPrice(price)) {
+					addMenu(mname, price);
+					//unit_test System.out.println("true");
+				}
+				if(!StringChecker.checkPrice(price)) {
+					//unit_test System.out.println("false");
+				}
 			}else {
 				System.out.println("false");
 			}

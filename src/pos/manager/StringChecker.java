@@ -107,11 +107,25 @@ public class StringChecker {
 	      }  
 		 else {
 			 main.goMain();
-			 
-		 
 		 }
 		return true;
 	   
+	}
+	public static boolean checkPrice(String price) {
+		MainScene main=new MainScene();
+		if(price.matches("exit")) {
+			main.goMain();
+		}
+		if(!price.matches("^[0-9]*$")) {
+			return false;
+		}
+		if(price.length()>5) {
+			return false;
+		}
+		if(price.charAt(0)=='0') {
+			return false;
+		}
+		return true;
 	}
 
 }
