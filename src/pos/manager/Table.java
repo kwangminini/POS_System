@@ -2,7 +2,7 @@ package pos.manager;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-
+import java.util.Map.Entry;
 public class Table {
 
 	public ArrayList<HashMap<String, Integer>> orderedMenu=new ArrayList<HashMap<String, Integer>>();//주문 메뉴의 리스트안에 메뉴명 가격을 hashamp으로 입력
@@ -20,6 +20,11 @@ public class Table {
 		//unit_test System.out.println("size:"+orderedMenu.size());
 		for(String key : map.keySet()) {
 			System.out.println(key+" "+map.get(key));
+		}
+		for(int i=0;i<orderedMenu.size();i++) {
+			for(Entry<String,Integer> map:orderedMenu.get(i).entrySet()) {
+				System.out.println(map.getKey()+" "+map.getValue());
+			}
 		}
 	}
 

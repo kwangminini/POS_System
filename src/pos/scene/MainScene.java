@@ -172,9 +172,9 @@ public class MainScene {
 		if(StringChecker.checkTableNum(movetableNum)) {
 			if(NullCheck()) { //이동하려는 테이블이 비어있는지 확인하는 함수
 				//unit_test System.out.println("이동가능");
-				tableManager.table[Integer.parseInt(movetableNum)].map=(HashMap<String, Integer>)tableManager.table[Integer.parseInt(tableNum)].map.clone();
+				tableManager.table[Integer.parseInt(movetableNum)].orderedMenu=(ArrayList<HashMap<String, Integer>>)tableManager.table[Integer.parseInt(tableNum)].orderedMenu.clone();
 				//기존 테이블의 주문내역을 이동한 테이블로 이동시킨다.
-				tableManager.table[Integer.parseInt(tableNum)].map.clear();
+				tableManager.table[Integer.parseInt(tableNum)].orderedMenu.clear();
 				//이동한 테이블의 주문내역을 삭제한다.
 				System.out.println("이동하였습니다.");
 				goMain();
