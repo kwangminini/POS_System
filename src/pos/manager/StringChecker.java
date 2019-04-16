@@ -6,19 +6,20 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 
+
+
+import pos.scene.MainScene;
+
 public class StringChecker {
 	
-	//String filePath="C:\\Users\\rhkd8\\eclipse-workspace\\POS\\src\\menulist.txt";
-	//FileManager filemanager=new FileManager();
-	
-	public static boolean checkOneFour(String oneFour) {//1~5 check
-	      if(!oneFour.matches("^[1-5]{1}$")) {
+	public static boolean checkMain(String main) {//1~5 check
+	      if(!main.matches("^[1-5]{1}$")) {
 	         
 	         return false;
 	      }
 	      return true;
 	   }
-	public static boolean checkTableNum(String tablenum) {//1~5 check
+	public static boolean checkTableNum(String tablenum) {//1~6 check && exit check
 	      if(!tablenum.matches("^[1-6]{1}$")&&!tablenum.matches("/exit/")) {
 	         
 	         return false;
@@ -74,7 +75,7 @@ public class StringChecker {
 		return false;
 	}
 	
-
+	
 	public static boolean checkQuantity(String menu) {//¸Ş´ºÆÇ¿¡ ÀÖ´Â ¸Ş´ºÀÎÁö È®ÀÎ
 		//String[] menulist= new String[100];
 		if(menu.length()>1) { //02, 03 ÀÌ·± ¼ö·® ¾Õ¿¡ 0 ºÙ´Â°É ¹æÁö
@@ -87,4 +88,30 @@ public class StringChecker {
 		}else
 			return false;
 	}
+	public static boolean checkMname(String mname) {
+		MainScene main=new MainScene();
+		for(int i=0;i<mname.length();i++) { //mname¹®ÀÚ¿­¿¡ °ø¹éÀÌ ÀÖ´ÂÁö Ã¼Å©
+			if(mname.charAt(i)==' ') {
+				return false;
+			}
+		}
+		 if(!mname.matches("exit")) {   
+	         if(mname.length()>20) {
+	        	 return false;
+	         }
+	         else if(!mname.matches(".*[¤¡-¤¾¤¿-¤Ó°¡-ÆR]+.*")) { //ÇÑ±Û·Î ÀÌ·ç¾îÁ³´ÂÁö
+	        	 return false;
+	         }
+	         else
+	        	 return true;
+	      }  
+		 else {
+			 main.goMain();
+			 
+		 
+		 }
+		return true;
+	   
+	}
+
 }

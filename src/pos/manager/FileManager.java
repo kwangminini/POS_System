@@ -5,14 +5,14 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 
-public class FileManager {
+public class FileManager { //메뉴판을 담당하는 클래스
 	public FileManager() {
 		// TODO Auto-generated constructor stub
 	}
-	String pathName="C:\\Users\\rhkd8\\eclipse-workspace\\POS\\src";
-	String fileName="menulist.txt";
-	String filePath="C:\\Users\\rhkd8\\eclipse-workspace\\POS\\src\\menulist.txt";
-	public void readFile(String filePath) {
+	//String pathName="C:\\Users\\rhkd8\\eclipse-workspace\\POS\\src"; 
+	//String fileName="menulist.txt"; 
+	String filePath="C:\\Users\\rhkd8\\eclipse-workspace\\POS\\src\\menulist.txt"; //메뉴판 텍스트파일 경로 설정
+	public void readFile(String filePath) { //해당 txt파일을 읽어오는 함수
 		FileReader fr=null;
 		BufferedReader br=null;
 		try {
@@ -20,11 +20,11 @@ public class FileManager {
 			br=new BufferedReader(fr);
 			String data;
 			while((data=br.readLine())!=null) {
-				System.out.println(data+" ");
+				System.out.println(data+" "); //txt파일 안의 문자열을 출력
 			}
 			System.out.println();
 			
-		} catch (Exception e) {
+		} catch (Exception e) { 
 			// TODO: handle exception
 			e.printStackTrace();
 		}finally {
