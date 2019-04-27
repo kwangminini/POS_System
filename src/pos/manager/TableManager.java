@@ -13,10 +13,10 @@ public class TableManager {
 	}
 
 	public void add(String menu,int n,int tablenum) { //테이블에 메뉴를 추가
-		
 		table[tablenum].addTable(menu, n);
 		}
 	public void print(int tablenum) { //테이블 메뉴를 보여준다.
 		this.table[tablenum].show();
 	}
+
 }
