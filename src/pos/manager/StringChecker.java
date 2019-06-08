@@ -122,15 +122,15 @@ public class StringChecker {
 			main.goMain();
 		}
 		if(!price.matches("^[0-9]*$")) { //숫자로 이루어졌는지 체크
-			System.out.println("유효하지 않은 가격입니다. 5자리 이내의 양의정수를 입력하세요.");
+//			System.out.println("유효하지 않은 가격입니다. 5자리 이내의 양의정수를 입력하세요.");
 			return false;
 		}
 		if(price.length()>5) { //5자리 이내인지 체크
-			System.out.println("유효하지 않은 가격입니다. 5자리 이내의 양의정수를 입력하세요.");
+//			System.out.println("유효하지 않은 가격입니다. 5자리 이내의 양의정수를 입력하세요.");
 			return false;
 		}
 		if(price.charAt(0)=='0') { //가격의 맨앞이 0 으로시작하면 안되는것을 체크
-			System.out.println("유효하지 않은 가격입니다. 5자리 이내의 양의정수를 입력하세요.");
+//			System.out.println("유효하지 않은 가격입니다. 5자리 이내의 양의정수를 입력하세요.");
 			return false;
 		}
 		return true;

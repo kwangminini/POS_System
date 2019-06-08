@@ -134,7 +134,7 @@ public class MainScene {
 			tableManager.print(Integer.parseInt(tableNum));
 			}
 		else {
-			System.out.println("없는 테이블입니다. 1 - 6 내의 테이블 번호를 입력해 주세요.");
+			System.out.println("없는 테이블입니다.");
 			goMenu2();
 			}
 	}
@@ -190,6 +190,7 @@ public class MainScene {
 			}
 		}
 		else {
+			System.out.println("없는 테이블입니다.");
 			sumTable();
 		}
 	}
@@ -242,7 +243,7 @@ public class MainScene {
 			}
 		}
 		else {	
-			System.out.println("없는 테이블입니다. 1-6 내의 테이블 번호를 입력해 주세요.");
+			System.out.println("없는 테이블입니다.");
 			moveTable();
 		}
 		
@@ -298,6 +299,9 @@ public class MainScene {
 				}
 				if(!StringChecker.checkPrice(price)) {
 					//unit_test System.out.println("false");
+					System.out.println("유효하지 않은 가격입니다. 5자리 이내의 양의정수를 입력하세요.");
+					selMode(1);
+					
 				}
 			}
 			else {
@@ -309,8 +313,12 @@ public class MainScene {
 			if(StringChecker.checkMenu(del_mname)) { //추가할 메뉴가 이미 존재하는지 체크
 				delMenu(del_mname);
 			}
+			if(StringChecker.checkExit(del_mname)) {
+				goMain();
+			}
 			else {
 				System.out.println("없는 메뉴입니다. 다시입력해주세요.");
+				selMode(2);
 			}
 			break;
 //			unit_test	for(int j=0;j<s.length;j++) {
@@ -319,7 +327,7 @@ public class MainScene {
 
 		default:
 			System.out.println("다시 입력해주세요."); 
-			selMode(modeNum);
+			goMenu4();
 		}
 	}
 	private void delMenu(String mname) { //메뉴 삭제하는 함수
@@ -470,6 +478,13 @@ public class MainScene {
 	private boolean goMenu3() { //3. 계산
 		System.out.println("1-6 내의 테이블 번호를 입력해 주세요.");
 		tableNum=scan.nextLine();
+		if(StringChecker.checkExit(tableNum)) {
+			return goMain();
+		}
+		if(!StringChecker.checkTableNum(tableNum)) {
+			System.out.println("없는 테이블입니다.");
+			goMenu3();
+		}
 		pay(tableNum);
 		return goMain();
 	}
@@ -480,7 +495,12 @@ public class MainScene {
 		if(StringChecker.checkExit(modeNum)) { //exit 입력시 메인으로 
 			return goMain();
 		}
-		selMode(Integer.parseInt(modeNum));
+		if(modeNum.equals("1")||modeNum.equals("2")) { //1,2 외의 예외처리 
+			selMode(Integer.parseInt(modeNum));			
+		}else {
+			System.out.println("다시 입력해주세요.");
+			goMenu4();
+		}
 		return goMain();
 	}
 }
